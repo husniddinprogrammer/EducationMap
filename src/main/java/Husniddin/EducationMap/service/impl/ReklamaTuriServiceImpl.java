@@ -4,10 +4,12 @@ import Husniddin.EducationMap.entity.ReklamaTuri;
 import Husniddin.EducationMap.repository.ReklamaTuriRepository;
 import Husniddin.EducationMap.service.ReklamaTuriService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ReklamaTuriServiceImpl implements ReklamaTuriService {
     @Autowired
     private ReklamaTuriRepository reklamaTuriRepository;

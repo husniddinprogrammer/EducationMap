@@ -1,8 +1,8 @@
 package Husniddin.EducationMap.entity;
 
 public enum FaylTur {
-    PLAYSTATION_RASM,
-    POLIYA_RASM,
-    GAMECLUB_RASM,
-    SPORTZAL_RASM,
+    KURS_RASM,
+    OQUV_MARKAZ_RASM,
+    OQITUVCHI_RASM,
+    REKLAMA_RASM,
 }

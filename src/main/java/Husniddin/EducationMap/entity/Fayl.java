@@ -1,5 +1,6 @@
 package Husniddin.EducationMap.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -13,7 +14,6 @@ public class Fayl {
 
     @Column(length = 30)
     private String nom;
-    @ManyToOne
     @Column(nullable = false)
     private FaylTur faylTur;
     @Column(length = 10)

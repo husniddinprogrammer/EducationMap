@@ -4,10 +4,12 @@ import Husniddin.EducationMap.entity.Sayt;
 import Husniddin.EducationMap.repository.SaytRepository;
 import Husniddin.EducationMap.service.SaytService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class SaytServiceImpl implements SaytService {
     @Autowired
     private SaytRepository saytRepository;

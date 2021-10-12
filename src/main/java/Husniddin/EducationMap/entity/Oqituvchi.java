@@ -22,7 +22,7 @@ public class Oqituvchi {
     private Integer tajriba;
     private Integer togilganyili;
     @ManyToOne
-    private FaylTur photo;
+    private Fayl photo;
     @ManyToOne
     private OquvMarkaz oquvMarkaz;
     private String qisqaMalumot;
@@ -32,7 +32,7 @@ public class Oqituvchi {
     public Oqituvchi() {
     }
 
-    public Oqituvchi(Long id, String ism, String familiya, String nomer, FanTuri fan1, FanTuri fan2, FanTuri fan3, Integer tajriba, Integer togilganyili, FaylTur photo, OquvMarkaz oquvMarkaz, String qisqaMalumot, Long oquvchiSoni, Long kursSoni, Boolean status) {
+    public Oqituvchi(Long id, String ism, String familiya, String nomer, FanTuri fan1, FanTuri fan2, FanTuri fan3, Integer tajriba, Integer togilganyili, Fayl photo, OquvMarkaz oquvMarkaz, String qisqaMalumot, Long oquvchiSoni, Long kursSoni, Boolean status) {
         this.id = id;
         this.ism = ism;
         this.familiya = familiya;
@@ -122,11 +122,11 @@ public class Oqituvchi {
         this.togilganyili = togilganyili;
     }
 
-    public FaylTur getPhoto() {
+    public Fayl getPhoto() {
         return photo;
     }
 
-    public void setPhoto(FaylTur photo) {
+    public void setPhoto(Fayl photo) {
         this.photo = photo;
     }
 

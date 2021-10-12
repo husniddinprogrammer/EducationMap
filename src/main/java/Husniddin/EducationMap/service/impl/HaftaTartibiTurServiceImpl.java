@@ -4,10 +4,12 @@ import Husniddin.EducationMap.entity.HaftaTartibiTur;
 import Husniddin.EducationMap.repository.HaftaTartibiTurRepository;
 import Husniddin.EducationMap.service.HaftaTartibiTurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class HaftaTartibiTurServiceImpl implements HaftaTartibiTurService {
     @Autowired
     private HaftaTartibiTurRepository haftaTartibiTurRepository;

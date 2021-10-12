@@ -1,9 +1,10 @@
-package Husniddin.EducationMap.entity;
+package Husniddin.EducationMap.service.vm;
+
 
 import Husniddin.EducationMap.configuration.Constants;
+import Husniddin.EducationMap.entity.Lavozim;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
@@ -14,14 +15,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Entity
-@Table(name = "user_one")
-@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
-public class User implements Serializable {
+public class UserVM {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -50,10 +47,10 @@ public class User implements Serializable {
     @Column(name = "lavozim_id")
     protected Set<Lavozim> lavozimlar;
 
-    public User() {
+    public UserVM() {
     }
 
-    public User(Long id, @Pattern(regexp = Constants.LOGIN_REGEX) @Size(min = 6, max = 30) String username, @Size(min = 6, max = 60) String password, String name, String number, LocalDateTime qushilganVaqti, Boolean status, Set<Lavozim> lavozimlar) {
+    public UserVM(Long id, @Pattern(regexp = Constants.LOGIN_REGEX) @Size(min = 6, max = 30) String username, @Size(min = 6, max = 60) String password, String name, String number, LocalDateTime qushilganVaqti, Boolean status, Set<Lavozim> lavozimlar) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -128,17 +125,3 @@ public class User implements Serializable {
         this.lavozimlar = lavozimlar;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

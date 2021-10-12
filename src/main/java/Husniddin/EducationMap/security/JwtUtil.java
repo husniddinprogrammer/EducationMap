@@ -12,10 +12,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class JwtUtil {
+public class
+JwtUtil {
 
     private String secret;
     private int jwtExpirationInMs;
+    private int jwtExpirationInMsRememberMe;
 
     @Value("${jwt.secret}")
     public void setSecret(String secret) {
@@ -27,25 +29,34 @@ public class JwtUtil {
         this.jwtExpirationInMs = Integer.parseInt(jwtExpirationInMs);
     }
 
+    @Value("${jwt.jwtExpirationInMsRememberMe}")
+    public void setJwtExpirationInMsRememberMe(String jwtExpirationInMsRememberME) {
+        this.jwtExpirationInMsRememberMe = Integer.parseInt(jwtExpirationInMsRememberME);
+    }
+
     // generate token for user
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         Collection<? extends GrantedAuthority> roles = userDetails.getAuthorities();
 
 
-        claims.put("roles", roles.stream().map(e->e.getAuthority().toString()).toArray());
+// TODO ROLE bilan boshlanishni hal qilish zarur bu vaqtinchalik
+        claims.put("roles", roles.stream().map(e -> {
+            String r = e.getAuthority().toString();
+            return r.substring(r.indexOf("_")+1);
+        }).toArray());
+
 
         return doGenerateToken(claims, userDetails.getUsername());
     }
 
     private String doGenerateToken(Map<String, Object> claims, String subject) {
-
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationInMs)).signWith(SignatureAlgorithm.HS512, secret).compact();
+                .setExpiration(new Date(System.currentTimeMillis() + (true ? jwtExpirationInMsRememberMe : jwtExpirationInMs))).signWith(SignatureAlgorithm.HS512, secret).compact();
     }
+
     public boolean validateToken(String authToken) {
         try {
-            // Jwt token has not been tampered with
 
             Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(authToken);
 
@@ -62,6 +73,7 @@ public class JwtUtil {
 
     public String getUsernameFromToken(String token) {
         Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+
         return claims.getSubject();
     }
 
@@ -77,7 +89,6 @@ public class JwtUtil {
 
         return roles;
     }
-
 
 
 }

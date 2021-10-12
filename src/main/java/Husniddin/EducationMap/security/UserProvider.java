@@ -1,6 +1,5 @@
 package Husniddin.EducationMap.security;
 
-
 import Husniddin.EducationMap.entity.User;
 import Husniddin.EducationMap.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +22,12 @@ public class UserProvider implements UserDetailsService {
         Optional<User> ou = userRepository.findByUsername(username);
         if(ou.isPresent()) {
             User u = ou.get();
-            UserMaxsus um =  new UserMaxsus(u);
-            um.setLavozimlar(u.getLavozimlar());
-            return um;
+         UserMaxsus um =  new UserMaxsus(u);
+         um.setLavozimlar(u.getLavozimlar());
+         return um;
         }
         throw new UsernameNotFoundException("Topilmadi");
 
+
     }
-
-
 }

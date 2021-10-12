@@ -4,10 +4,12 @@ import Husniddin.EducationMap.entity.Kurs;
 import Husniddin.EducationMap.repository.KursRepository;
 import Husniddin.EducationMap.service.KursService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class KursServiceImpl implements KursService {
     @Autowired
     private KursRepository kursRepository;

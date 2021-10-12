@@ -14,14 +14,21 @@ import java.util.Set;
  * Spring security uchun yaratilgan maxsus user
  *
  * */
-public class UserMaxsus implements UserDetails {
+public class UserMaxsus implements UserDetails  {
    private String username;
    private String password;
+   private boolean rememberMe;
+
+
+   private Boolean enabled = false;
    private Collection<SimpleGrantedAuthority> authorities;
 
-   public UserMaxsus(User user) {
-        this.username = user.getUsername();
-        this.password = user.getPassword();
+   public UserMaxsus(){}
+   public UserMaxsus(User u) {
+        this.username = u.getUsername();
+        this.password = u.getPassword();
+        this.enabled = u.getStatus();
+
    }
 
    @Override
@@ -46,7 +53,7 @@ public class UserMaxsus implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.enabled;
     }
 
     public void setUsername(String username) {
@@ -66,10 +73,16 @@ public class UserMaxsus implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
+    public boolean isRememberMe() {
+        return rememberMe;
+    }
 
+    public void setRememberMe(boolean rememberMe) {
+        this.rememberMe = rememberMe;
+    }
     public void setLavozimlar(Set<Lavozim> lavozimlar){
         this.authorities = new HashSet<SimpleGrantedAuthority>();
 
-        lavozimlar.forEach(l -> authorities.add(new SimpleGrantedAuthority("ROLE_"+l.name())));
+        lavozimlar.forEach(l -> authorities.add(new SimpleGrantedAuthority(l.name())));
     }
 }

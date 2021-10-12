@@ -36,7 +36,7 @@ public class UserDTO {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime qushilganVaqti;
-    private Long status;
+    private Boolean status;
     @JsonIgnore
     @ElementCollection(targetClass = Lavozim.class)
     @CollectionTable(name = "user_lavozim",
@@ -96,11 +96,11 @@ public class UserDTO {
         this.qushilganVaqti = qushilganVaqti;
     }
 
-    public Long getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(Long status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

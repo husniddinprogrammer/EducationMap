@@ -23,9 +23,9 @@ public class Kurs {
     @ManyToOne
     private FanTuri fan;
     @ManyToOne
-    private OquvMarkaz oquvMarkaz;
-    @ManyToOne
     private HaftaTartibiTur haftaTartibiTur;
+    @ManyToOne
+    private OquvMarkaz oquvMarkaz;
     private Integer narxi;
     private Integer maxSoni;
     private Integer soni;
@@ -46,13 +46,13 @@ public class Kurs {
     public Kurs() {
     }
 
-    public Kurs(Long id, String nomi, Oqituvchi oqituvchi, FanTuri fan, OquvMarkaz oquvMarkaz, HaftaTartibiTur haftaTartibiTur, Integer narxi, Integer maxSoni, Integer soni, Integer startWork, Integer endWork, LocalDate boshlanishVaqti, Integer korilgan, Integer korilganIchi, String qisqaMalumot, FaolTur faolTur, Boolean status) {
+    public Kurs(Long id, String nomi, Oqituvchi oqituvchi, FanTuri fan, HaftaTartibiTur haftaTartibiTur, OquvMarkaz oquvMarkaz, Integer narxi, Integer maxSoni, Integer soni, Integer startWork, Integer endWork, LocalDate boshlanishVaqti, Integer korilgan, Integer korilganIchi, String qisqaMalumot, FaolTur faolTur, Boolean status) {
         this.id = id;
         this.nomi = nomi;
         this.oqituvchi = oqituvchi;
         this.fan = fan;
-        this.oquvMarkaz = oquvMarkaz;
         this.haftaTartibiTur = haftaTartibiTur;
+        this.oquvMarkaz = oquvMarkaz;
         this.narxi = narxi;
         this.maxSoni = maxSoni;
         this.soni = soni;
@@ -98,20 +98,20 @@ public class Kurs {
         this.fan = fan;
     }
 
-    public OquvMarkaz getOquvMarkaz() {
-        return oquvMarkaz;
-    }
-
-    public void setOquvMarkaz(OquvMarkaz oquvMarkaz) {
-        this.oquvMarkaz = oquvMarkaz;
-    }
-
     public HaftaTartibiTur getHaftaTartibiTur() {
         return haftaTartibiTur;
     }
 
     public void setHaftaTartibiTur(HaftaTartibiTur haftaTartibiTur) {
         this.haftaTartibiTur = haftaTartibiTur;
+    }
+
+    public OquvMarkaz getOquvMarkaz() {
+        return oquvMarkaz;
+    }
+
+    public void setOquvMarkaz(OquvMarkaz oquvMarkaz) {
+        this.oquvMarkaz = oquvMarkaz;
     }
 
     public Integer getNarxi() {
