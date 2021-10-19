@@ -1,5 +1,6 @@
 package Husniddin.EducationMap.service.impl;
 
+import Husniddin.EducationMap.entity.FanTuri;
 import Husniddin.EducationMap.entity.ReklamaTuri;
 import Husniddin.EducationMap.repository.ReklamaTuriRepository;
 import Husniddin.EducationMap.service.ReklamaTuriService;
@@ -20,6 +21,7 @@ public class ReklamaTuriServiceImpl implements ReklamaTuriService {
 
     @Override
     public ReklamaTuri add(ReklamaTuri reklamaTuri) throws Exception {
+        reklamaTuri.setStatus(1);
         return reklamaTuriRepository.save(reklamaTuri);
     }
 
@@ -41,5 +43,17 @@ public class ReklamaTuriServiceImpl implements ReklamaTuriService {
     @Override
     public Optional<ReklamaTuri> getById(Long aLong) throws Exception {
         return reklamaTuriRepository.findById(aLong);
+    }
+
+    @Override
+    public ReklamaTuri status(Long id) throws Exception {
+        ReklamaTuri result=reklamaTuriRepository.findById(id).get();
+        if(result.getStatus()==1){
+            result.setStatus(0);
+        }
+        else {
+            result.setStatus(1);
+        }
+        return reklamaTuriRepository.save(result);
     }
 }

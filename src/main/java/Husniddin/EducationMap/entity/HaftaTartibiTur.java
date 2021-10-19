@@ -10,20 +10,20 @@ import javax.persistence.Id;
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class HaftaTartibiTur {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomi;
-    private String status;
     private String kunlar;
+    private Integer status;
 
     public HaftaTartibiTur() {
     }
 
-    public HaftaTartibiTur(Long id, String nomi, String status, String kunlar) {
+    public HaftaTartibiTur(Long id, String nomi, String kunlar, Integer status) {
         this.id = id;
         this.nomi = nomi;
-        this.status = status;
         this.kunlar = kunlar;
+        this.status = status;
     }
 
     public Long getId() {
@@ -42,19 +42,19 @@ public class HaftaTartibiTur {
         this.nomi = nomi;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getKunlar() {
         return kunlar;
     }
 
     public void setKunlar(String kunlar) {
         this.kunlar = kunlar;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

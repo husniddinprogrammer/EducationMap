@@ -1,5 +1,6 @@
 package Husniddin.EducationMap.service.impl;
 
+import Husniddin.EducationMap.entity.FanTuri;
 import Husniddin.EducationMap.entity.FaolTur;
 import Husniddin.EducationMap.repository.FaolTurRepository;
 import Husniddin.EducationMap.service.FaolTurService;
@@ -20,6 +21,7 @@ public class FaolTurServiceImpl implements FaolTurService {
 
     @Override
     public FaolTur add(FaolTur faolTur) throws Exception {
+        faolTur.setStatus(1);
         return faolTurRepository.save(faolTur);
     }
 
@@ -41,5 +43,17 @@ public class FaolTurServiceImpl implements FaolTurService {
     @Override
     public Optional<FaolTur> getById(Long aLong) throws Exception {
         return faolTurRepository.findById(aLong);
+    }
+
+    @Override
+    public FaolTur status(Long id) throws Exception {
+        FaolTur result=faolTurRepository.findById(id).get();
+        if(result.getStatus()==1){
+            result.setStatus(0);
+        }
+        else {
+            result.setStatus(1);
+        }
+        return faolTurRepository.save(result);
     }
 }

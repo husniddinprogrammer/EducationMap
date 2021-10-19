@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class ReklamaTuri {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomi;
     private Integer status;

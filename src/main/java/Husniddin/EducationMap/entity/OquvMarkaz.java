@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class OquvMarkaz {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomi;
     private String manzil;
@@ -44,7 +44,7 @@ public class OquvMarkaz {
     private String sayt;
     private String telegram;
     private Long oquvchiSoni;
-    private Long oqituvchiSoni;
+    private Long oqituvchiSoni; 
     private Long kursSoni;
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")

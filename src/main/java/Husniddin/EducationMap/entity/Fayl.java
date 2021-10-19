@@ -9,7 +9,7 @@ import javax.persistence.*;
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Fayl {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 30)

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/fayl")
+@RequestMapping("/api/fayl")
 @CrossOrigin(origins = "*",maxAge = 3600)
 public class FaylController {
     @Autowired
@@ -29,15 +29,8 @@ public class FaylController {
     public ResponseEntity<?> getById(@PathVariable Long id) throws Exception{
         return new ResponseEntity(service.getById(id),HttpStatus.OK);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody Fayl fayl, @PathVariable long id) throws Exception {
-
-        Optional<Fayl> Optional = service.getById(id);
-
-        if (!Optional.isPresent())
-            return ResponseEntity.notFound().build();
-
-        fayl.setId(id);
+    @PutMapping("/")
+    public ResponseEntity<?> update(@RequestBody Fayl fayl) throws Exception {
         service.update(fayl);
         return ResponseEntity.noContent().build();
     }

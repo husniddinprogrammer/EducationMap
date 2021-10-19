@@ -21,13 +21,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class UserDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @NotNull
-    @Pattern(regexp = Constants.LOGIN_REGEX)
-    @Size(min = 6, max = 30)
-    @Column(length = 30, unique = true, nullable = false)
     private String username;
     private String name;
     private String number;
@@ -37,11 +31,6 @@ public class UserDTO {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime qushilganVaqti;
     private Boolean status;
-    @JsonIgnore
-    @ElementCollection(targetClass = Lavozim.class)
-    @CollectionTable(name = "user_lavozim",
-            joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "lavozim_id")
     protected Set<Lavozim> lavozimlar;
 
     public UserDTO() {

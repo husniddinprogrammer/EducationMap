@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/faol-tur")
+@RequestMapping("/api/faol-tur")
 @CrossOrigin(origins = "*",maxAge = 3600)
 public class FaolTurController {
     @Autowired
@@ -20,6 +20,14 @@ public class FaolTurController {
     @GetMapping(value = "/")
     public ResponseEntity<?> getAll() throws Exception{
         return new ResponseEntity(service.getAll(), HttpStatus.OK);
+    }
+    @GetMapping(value = "/status/{id}")
+    public void getStatus(@PathVariable Long id){
+        try {
+            new ResponseEntity(service.status(id), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @PostMapping(value = "/")
     public ResponseEntity save(@RequestBody FaolTur faolTur) throws Exception{
@@ -29,15 +37,8 @@ public class FaolTurController {
     public ResponseEntity<?> getById(@PathVariable Long id) throws Exception{
         return new ResponseEntity(service.getById(id),HttpStatus.OK);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody FaolTur faolTur, @PathVariable long id) throws Exception {
-
-        Optional<FaolTur> Optional = service.getById(id);
-
-        if (!Optional.isPresent())
-            return ResponseEntity.notFound().build();
-
-        faolTur.setId(id);
+    @PutMapping("/")
+    public ResponseEntity<?> update(@RequestBody FaolTur faolTur) throws Exception {
         service.update(faolTur);
         return ResponseEntity.noContent().build();
     }

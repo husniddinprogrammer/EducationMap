@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Sayt {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer poliyalar;
     private Integer korilgan;

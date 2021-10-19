@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/oqituvchi")
+@RequestMapping("/api/oqituvchi")
 @CrossOrigin(origins = "*",maxAge = 3600)
 public class OqituvchiController {
     @Autowired
@@ -29,15 +29,8 @@ public class OqituvchiController {
     public ResponseEntity<?> getById(@PathVariable Long id) throws Exception{
         return new ResponseEntity(service.getById(id),HttpStatus.OK);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody Oqituvchi oqituvchi, @PathVariable long id) throws Exception {
-
-        Optional<Oqituvchi> Optional = service.getById(id);
-
-        if (!Optional.isPresent())
-            return ResponseEntity.notFound().build();
-
-        oqituvchi.setId(id);
+    @PutMapping("/")
+    public ResponseEntity<?> update(@RequestBody Oqituvchi oqituvchi) throws Exception {
         service.update(oqituvchi);
         return ResponseEntity.noContent().build();
     }

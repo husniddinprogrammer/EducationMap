@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Kurs {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomi;
     @ManyToOne

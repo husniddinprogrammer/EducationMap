@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/xabar")
+@RequestMapping("/api/xabar")
 @CrossOrigin(origins = "*",maxAge = 3600)
 public class XabarController {
     @Autowired
@@ -29,15 +29,8 @@ public class XabarController {
     public ResponseEntity<?> getById(@PathVariable Long id) throws Exception{
         return new ResponseEntity(service.getById(id),HttpStatus.OK);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody Xabar xabar, @PathVariable long id) throws Exception {
-
-        Optional<Xabar> Optional = service.getById(id);
-
-        if (!Optional.isPresent())
-            return ResponseEntity.notFound().build();
-
-        xabar.setId(id);
+    @PutMapping("/")
+    public ResponseEntity<?> update(@RequestBody Xabar xabar) throws Exception {
         service.update(xabar);
         return ResponseEntity.noContent().build();
     }

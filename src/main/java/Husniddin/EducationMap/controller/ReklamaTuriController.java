@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/reklama-turi")
+@RequestMapping("/api/reklama-turi")
 @CrossOrigin(origins = "*",maxAge = 3600)
 public class ReklamaTuriController {
     @Autowired
@@ -20,6 +20,14 @@ public class ReklamaTuriController {
     @GetMapping(value = "/")
     public ResponseEntity<?> getAll() throws Exception{
         return new ResponseEntity(service.getAll(), HttpStatus.OK);
+    }
+    @GetMapping(value = "/status/{id}")
+    public void getStatus(@PathVariable Long id){
+        try {
+            new ResponseEntity(service.status(id), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @PostMapping(value = "/")
     public ResponseEntity save(@RequestBody ReklamaTuri reklamaTuri) throws Exception{
@@ -29,15 +37,8 @@ public class ReklamaTuriController {
     public ResponseEntity<?> getById(@PathVariable Long id) throws Exception{
         return new ResponseEntity(service.getById(id),HttpStatus.OK);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody ReklamaTuri reklamaTuri, @PathVariable long id) throws Exception {
-
-        Optional<ReklamaTuri> Optional = service.getById(id);
-
-        if (!Optional.isPresent())
-            return ResponseEntity.notFound().build();
-
-        reklamaTuri.setId(id);
+    @PutMapping("/")
+    public ResponseEntity<?> update(@RequestBody ReklamaTuri reklamaTuri) throws Exception {
         service.update(reklamaTuri);
         return ResponseEntity.noContent().build();
     }

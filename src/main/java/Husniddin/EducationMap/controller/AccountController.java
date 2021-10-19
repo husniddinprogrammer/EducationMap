@@ -51,7 +51,7 @@ public class AccountController {
 
          UserDetails userDetails = userProvider.loadUserByUsername(userMaxsus.getUsername());
 
-         String token = jwtTokenUtil.generateToken(userDetails);
+         String token = jwtTokenUtil.generateToken(userDetails,true);
 
         return ResponseEntity.ok(new Token(token));
     }

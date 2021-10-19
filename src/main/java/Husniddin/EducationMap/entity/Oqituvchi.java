@@ -8,7 +8,7 @@ import javax.persistence.*;
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Oqituvchi {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String ism;
     private String familiya;

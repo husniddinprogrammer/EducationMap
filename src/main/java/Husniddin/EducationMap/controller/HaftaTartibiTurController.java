@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/hafta-tartibi-tur")
+@RequestMapping("/api/hafta-tartibi-tur")
 @CrossOrigin(origins = "*",maxAge = 3600)
 public class HaftaTartibiTurController {
     @Autowired
@@ -20,6 +20,14 @@ public class HaftaTartibiTurController {
     @GetMapping(value = "/")
     public ResponseEntity<?> getAll() throws Exception{
         return new ResponseEntity(service.getAll(), HttpStatus.OK);
+    }
+    @GetMapping(value = "/status/{id}")
+    public void getStatus(@PathVariable Long id){
+        try {
+            new ResponseEntity(service.status(id), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @PostMapping(value = "/")
     public ResponseEntity save(@RequestBody HaftaTartibiTur haftaTartibiTur) throws Exception{
@@ -29,15 +37,8 @@ public class HaftaTartibiTurController {
     public ResponseEntity<?> getById(@PathVariable Long id) throws Exception{
         return new ResponseEntity(service.getById(id),HttpStatus.OK);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody HaftaTartibiTur haftaTartibiTur, @PathVariable long id) throws Exception {
-
-        Optional<HaftaTartibiTur> Optional = service.getById(id);
-
-        if (!Optional.isPresent())
-            return ResponseEntity.notFound().build();
-
-        haftaTartibiTur.setId(id);
+    @PutMapping("/")
+    public ResponseEntity<?> update(@RequestBody HaftaTartibiTur haftaTartibiTur) throws Exception {
         service.update(haftaTartibiTur);
         return ResponseEntity.noContent().build();
     }

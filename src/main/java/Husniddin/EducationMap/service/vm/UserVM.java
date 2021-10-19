@@ -19,38 +19,19 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public class UserVM {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @NotNull
-    @Pattern(regexp = Constants.LOGIN_REGEX)
-    @Size(min = 6, max = 30)
-    @Column(length = 30, unique = true, nullable = false)
     private String username;
-    @JsonIgnore
-    @NotNull
-    @Size(min = 6, max = 60)
-    @Column(name = "password_hash", length = 60, nullable = false)
     private String password;
     private String name;
     private String number;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime qushilganVaqti;
     private Boolean status;
-    @JsonIgnore
-    @ElementCollection(targetClass = Lavozim.class)
-    @CollectionTable(name = "user_lavozim",
-            joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "lavozim_id")
     protected Set<Lavozim> lavozimlar;
 
     public UserVM() {
     }
 
-    public UserVM(Long id, @Pattern(regexp = Constants.LOGIN_REGEX) @Size(min = 6, max = 30) String username, @Size(min = 6, max = 60) String password, String name, String number, LocalDateTime qushilganVaqti, Boolean status, Set<Lavozim> lavozimlar) {
+    public UserVM(Long id, String username, String password, String name, String number, LocalDateTime qushilganVaqti, Boolean status, Set<Lavozim> lavozimlar) {
         this.id = id;
         this.username = username;
         this.password = password;

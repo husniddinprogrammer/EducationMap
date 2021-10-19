@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Xabar {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String ism;
     private String familiya;

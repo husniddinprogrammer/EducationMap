@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/kurs")
+@RequestMapping("/api/kurs")
 @CrossOrigin(origins = "*",maxAge = 3600)
 public class KursController {
     @Autowired
@@ -29,15 +29,8 @@ public class KursController {
     public ResponseEntity<?> getById(@PathVariable Long id) throws Exception{
         return new ResponseEntity(service.getById(id),HttpStatus.OK);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody Kurs kurs, @PathVariable long id) throws Exception {
-
-        Optional<Kurs> Optional = service.getById(id);
-
-        if (!Optional.isPresent())
-            return ResponseEntity.notFound().build();
-
-        kurs.setId(id);
+    @PutMapping("/")
+    public ResponseEntity<?> update(@RequestBody Kurs kurs) throws Exception {
         service.update(kurs);
         return ResponseEntity.noContent().build();
     }

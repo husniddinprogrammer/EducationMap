@@ -12,8 +12,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class
-JwtUtil {
+public class JwtUtil {
 
     private String secret;
     private int jwtExpirationInMs;
@@ -35,7 +34,7 @@ JwtUtil {
     }
 
     // generate token for user
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails, boolean rememberMe) {
         Map<String, Object> claims = new HashMap<>();
         Collection<? extends GrantedAuthority> roles = userDetails.getAuthorities();
 
@@ -47,12 +46,12 @@ JwtUtil {
         }).toArray());
 
 
-        return doGenerateToken(claims, userDetails.getUsername());
+        return doGenerateToken(claims, userDetails.getUsername(), rememberMe);
     }
 
-    private String doGenerateToken(Map<String, Object> claims, String subject) {
+    private String doGenerateToken(Map<String, Object> claims, String subject, boolean rememberMe) {
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + (true ? jwtExpirationInMsRememberMe : jwtExpirationInMs))).signWith(SignatureAlgorithm.HS512, secret).compact();
+                .setExpiration(new Date(System.currentTimeMillis() + (rememberMe ? jwtExpirationInMsRememberMe : jwtExpirationInMs))).signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
     public boolean validateToken(String authToken) {
