@@ -27,6 +27,8 @@ public class HaftaTartibiTurServiceImpl implements HaftaTartibiTurService {
 
     @Override
     public void update(HaftaTartibiTur haftaTartibiTur) throws Exception {
+        HaftaTartibiTur element=haftaTartibiTurRepository.findById(haftaTartibiTur.getId()).get();
+        haftaTartibiTur.setStatus(element.getStatus());
         haftaTartibiTurRepository.save(haftaTartibiTur);
     }
 

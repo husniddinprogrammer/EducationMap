@@ -27,6 +27,8 @@ public class ReklamaTuriServiceImpl implements ReklamaTuriService {
 
     @Override
     public void update(ReklamaTuri reklamaTuri) throws Exception {
+        ReklamaTuri element=reklamaTuriRepository.findById(reklamaTuri.getId()).get();
+        reklamaTuri.setStatus(element.getStatus());
         reklamaTuriRepository.save(reklamaTuri);
     }
 

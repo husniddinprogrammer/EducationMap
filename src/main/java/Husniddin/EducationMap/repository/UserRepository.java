@@ -16,4 +16,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
     public List<User> findByIdNotOrderByIdDesc(Long id);
     public List<User> findAllByQushilganVaqtiBetweenOrderByIdDesc(LocalDateTime sana1, LocalDateTime sana2);
     public List<User> findAllByUsernameLike(String username);
+    public List<User> findAllByStatus(Boolean status);
+
 }

@@ -164,6 +164,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAllByUsernameLike(username);
     }
 
+    @Override
+    public List<User> getAllBySelected() {
+        return userRepository.findAllByStatus(true);
+    }
+
 }
 
 

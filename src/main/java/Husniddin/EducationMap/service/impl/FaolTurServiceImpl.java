@@ -27,6 +27,8 @@ public class FaolTurServiceImpl implements FaolTurService {
 
     @Override
     public void update(FaolTur faolTur) throws Exception {
+        FaolTur element=faolTurRepository.findById(faolTur.getId()).get();
+        faolTur.setStatus(element.getStatus());
         faolTurRepository.save(faolTur);
     }
 

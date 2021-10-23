@@ -22,6 +22,10 @@ public class UserController {
     public ResponseEntity<?> getAll(){
         return new ResponseEntity(service.getAll(), HttpStatus.OK);
     }
+    @GetMapping(value = "/selected/")
+    public ResponseEntity<?> getAllSelected(){
+        return new ResponseEntity(service.getAllBySelected(), HttpStatus.OK);
+    }
     @GetMapping(value = "/status/{id}")
     public void getStatus(@PathVariable Long id){
         try {

@@ -22,4 +22,6 @@ public interface UserService{
     public List<User> getToday();
     public List<User> getSana(String sana);
     public List<User> getAllByUsernameLike(String username);
+    public List<User> getAllBySelected();
+
 }

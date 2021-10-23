@@ -24,6 +24,7 @@ public class OquvMarkaz {
     private Boolean status;
     private String koordinataX;
     private String koordinataY;
+    private String googleManzil;
     @ManyToOne
     private User boshliq;
     @ManyToOne
@@ -55,13 +56,14 @@ public class OquvMarkaz {
     public OquvMarkaz() {
     }
 
-    public OquvMarkaz(Long id, String nomi, String manzil, Boolean status, String koordinataX, String koordinataY, User boshliq, User admin, Long korilgan, Long korilganIchi, Fayl photo1, Fayl photo2, String viloyat, String tuman, Integer startWork, Integer endWork, Boolean open, String qisqaMalumot, String nomer, String sayt, String telegram, Long oquvchiSoni, Long oqituvchiSoni, Long kursSoni, LocalDate qoshilganVaqti) {
+    public OquvMarkaz(Long id, String nomi, String manzil, Boolean status, String koordinataX, String koordinataY, String googleManzil, User boshliq, User admin, Long korilgan, Long korilganIchi, Fayl photo1, Fayl photo2, String viloyat, String tuman, Integer startWork, Integer endWork, Boolean open, String qisqaMalumot, String nomer, String sayt, String telegram, Long oquvchiSoni, Long oqituvchiSoni, Long kursSoni, LocalDate qoshilganVaqti) {
         this.id = id;
         this.nomi = nomi;
         this.manzil = manzil;
         this.status = status;
         this.koordinataX = koordinataX;
         this.koordinataY = koordinataY;
+        this.googleManzil = googleManzil;
         this.boshliq = boshliq;
         this.admin = admin;
         this.korilgan = korilgan;
@@ -129,6 +131,14 @@ public class OquvMarkaz {
 
     public void setKoordinataY(String koordinataY) {
         this.koordinataY = koordinataY;
+    }
+
+    public String getGoogleManzil() {
+        return googleManzil;
+    }
+
+    public void setGoogleManzil(String googleManzil) {
+        this.googleManzil = googleManzil;
     }
 
     public User getBoshliq() {
