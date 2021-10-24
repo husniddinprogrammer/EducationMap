@@ -83,12 +83,12 @@ public class OquvMarkazServiceImpl implements OquvMarkazService {
     @Override
     public List<OquvMarkaz> getAllByWeek() {
         LocalDate date=LocalDate.now();
-        return oquvMarkazRepository.findAllByQoshilganVaqtiBetween(date.minusDays(5),date.plusDays(1));
+        return oquvMarkazRepository.findAllByQoshilganVaqtiBetweenOrderByIdDesc(date.minusDays(5),date.plusDays(1));
     }
 
     @Override
     public List<OquvMarkaz> getAllByQoshilganVaqtiBetweenOrderByIdDesc(String sana1,String sana2) {
-        return oquvMarkazRepository.findAllByQoshilganVaqtiBetween(LocalDate.parse(sana1),LocalDate.parse(sana2).plusDays(1));
+        return oquvMarkazRepository.findAllByQoshilganVaqtiBetweenOrderByIdDesc(LocalDate.parse(sana1),LocalDate.parse(sana2).plusDays(1));
     }
 
     @Override
@@ -99,5 +99,10 @@ public class OquvMarkazServiceImpl implements OquvMarkazService {
     @Override
     public List<OquvMarkaz> getAllByQoshilganVaqtiBetweenAndViloyatOrderByIdDesc(String sana1, String sana2, String viloyat) {
         return oquvMarkazRepository.findAllByQoshilganVaqtiBetweenAndViloyatOrderByIdDesc(LocalDate.parse(sana1), LocalDate.parse(sana2),viloyat);
+    }
+
+    @Override
+    public List<OquvMarkaz> getAllByStatus() {
+        return oquvMarkazRepository.findAllByStatus(true);
     }
 }

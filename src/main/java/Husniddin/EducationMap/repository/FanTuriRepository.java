@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface FanTuriRepository extends JpaRepository<FanTuri,Long> {
     public List<FanTuri> findAllByOrderById();
+    public List<FanTuri> findAllByStatus(Integer status);
 }

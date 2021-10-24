@@ -1,8 +1,15 @@
 package Husniddin.EducationMap.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
@@ -20,7 +27,7 @@ public class Oqituvchi {
     @ManyToOne
     private FanTuri fan3;
     private Integer tajriba;
-    private Integer togilganyili;
+    private Integer togilganYili;
     @ManyToOne
     private Fayl photo;
     @ManyToOne
@@ -29,10 +36,16 @@ public class Oqituvchi {
     private Long oquvchiSoni;
     private Long kursSoni;
     private Boolean status;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    private LocalDate qoshilganVaqti;
+
     public Oqituvchi() {
     }
 
-    public Oqituvchi(Long id, String ism, String familiya, String nomer, FanTuri fan1, FanTuri fan2, FanTuri fan3, Integer tajriba, Integer togilganyili, Fayl photo, OquvMarkaz oquvMarkaz, String qisqaMalumot, Long oquvchiSoni, Long kursSoni, Boolean status) {
+    public Oqituvchi(Long id, String ism, String familiya, String nomer, FanTuri fan1, FanTuri fan2, FanTuri fan3, Integer tajriba, Integer togilganYili, Fayl photo, OquvMarkaz oquvMarkaz, String qisqaMalumot, Long oquvchiSoni, Long kursSoni, Boolean status, LocalDate qoshilganVaqti) {
         this.id = id;
         this.ism = ism;
         this.familiya = familiya;
@@ -41,13 +54,14 @@ public class Oqituvchi {
         this.fan2 = fan2;
         this.fan3 = fan3;
         this.tajriba = tajriba;
-        this.togilganyili = togilganyili;
+        this.togilganYili = togilganYili;
         this.photo = photo;
         this.oquvMarkaz = oquvMarkaz;
         this.qisqaMalumot = qisqaMalumot;
         this.oquvchiSoni = oquvchiSoni;
         this.kursSoni = kursSoni;
         this.status = status;
+        this.qoshilganVaqti = qoshilganVaqti;
     }
 
     public Long getId() {
@@ -114,12 +128,12 @@ public class Oqituvchi {
         this.tajriba = tajriba;
     }
 
-    public Integer getTogilganyili() {
-        return togilganyili;
+    public Integer getTogilganYili() {
+        return togilganYili;
     }
 
-    public void setTogilganyili(Integer togilganyili) {
-        this.togilganyili = togilganyili;
+    public void setTogilganYili(Integer togilganYili) {
+        this.togilganYili = togilganYili;
     }
 
     public Fayl getPhoto() {
@@ -168,6 +182,14 @@ public class Oqituvchi {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public LocalDate getQoshilganVaqti() {
+        return qoshilganVaqti;
+    }
+
+    public void setQoshilganVaqti(LocalDate qoshilganVaqti) {
+        this.qoshilganVaqti = qoshilganVaqti;
     }
 }
 

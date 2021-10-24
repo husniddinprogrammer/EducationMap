@@ -13,8 +13,9 @@ import java.util.List;
 public interface OquvMarkazRepository extends JpaRepository<OquvMarkaz,Long> {
     public List<OquvMarkaz> findAllByOrderByIdDesc();
     public List<OquvMarkaz> findAllByNomiLike(String nomi);
-    public List<OquvMarkaz> findAllByQoshilganVaqtiBetween(LocalDate sana1, LocalDate sana2);
+    public List<OquvMarkaz> findAllByQoshilganVaqtiBetweenOrderByIdDesc(LocalDate sana1, LocalDate sana2);
     public List<OquvMarkaz> findAllByViloyatOrderByIdDesc(String viloyat);
     public List<OquvMarkaz> findAllByQoshilganVaqtiBetweenAndViloyatOrderByIdDesc(LocalDate sana1, LocalDate sana2, String viloyat);
+    public List<OquvMarkaz> findAllByStatus(Boolean status);
 
 }

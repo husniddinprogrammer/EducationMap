@@ -59,4 +59,9 @@ public class FanTuriServiceImpl implements FanTuriService {
         }
         return fanTuriRepository.save(result);
     }
+
+    @Override
+    public List<FanTuri> findAllByStatus() {
+        return fanTuriRepository.findAllByStatus(1);
+    }
 }
