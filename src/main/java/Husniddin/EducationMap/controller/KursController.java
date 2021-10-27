@@ -21,6 +21,26 @@ public class KursController {
     public ResponseEntity<?> getAll() throws Exception{
         return new ResponseEntity(service.getAll(), HttpStatus.OK);
     }
+    @GetMapping(value = "/filter/{sana1}/{sana2}/{oquvMarkazId}/{oqituvchiId}/{fanId}")
+    public ResponseEntity<?> getAllFilter(@PathVariable String sana1, @PathVariable String sana2,@PathVariable Long oquvMarkazId,@PathVariable Long oqituvchiId, @PathVariable Long fanId) throws Exception{
+        return new ResponseEntity(service.getAllFilter(sana1, sana2, oquvMarkazId, oqituvchiId, fanId), HttpStatus.OK);
+    }
+    @GetMapping(value = "/qidirish/{nomi}")
+    public ResponseEntity<?> getAllQidirish(@PathVariable String nomi) throws Exception{
+        return new ResponseEntity(service.getAllByNomiLike(nomi), HttpStatus.OK);
+    }
+    @GetMapping(value = "/status/{id}")
+    public void getStatus(@PathVariable Long id){
+        try {
+            new ResponseEntity(service.status(id), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @GetMapping(value = "/selected")
+    public ResponseEntity<?> getSelected() throws Exception{
+        return new ResponseEntity(service.getAllByStatus(), HttpStatus.OK);
+    }
     @PostMapping(value = "/")
     public ResponseEntity save(@RequestBody Kurs kurs) throws Exception{
         return  new ResponseEntity(service.add(kurs),HttpStatus.ACCEPTED);

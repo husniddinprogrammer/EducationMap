@@ -58,4 +58,9 @@ public class HaftaTartibiTurServiceImpl implements HaftaTartibiTurService {
         }
         return haftaTartibiTurRepository.save(result);
     }
+
+    @Override
+    public List<HaftaTartibiTur> getAllByStatus() {
+        return haftaTartibiTurRepository.findAllByStatus(1);
+    }
 }

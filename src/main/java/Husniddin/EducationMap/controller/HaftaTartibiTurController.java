@@ -21,6 +21,10 @@ public class HaftaTartibiTurController {
     public ResponseEntity<?> getAll() throws Exception{
         return new ResponseEntity(service.getAll(), HttpStatus.OK);
     }
+    @GetMapping(value = "/selected")
+    public ResponseEntity<?> getSelected() throws Exception{
+        return new ResponseEntity(service.getAllByStatus(), HttpStatus.OK);
+    }
     @GetMapping(value = "/status/{id}")
     public void getStatus(@PathVariable Long id){
         try {

@@ -58,4 +58,9 @@ public class FaolTurServiceImpl implements FaolTurService {
         }
         return faolTurRepository.save(result);
     }
+
+    @Override
+    public List<FaolTur> getAllByStatus() {
+        return faolTurRepository.findAllByStatus(1);
+    }
 }

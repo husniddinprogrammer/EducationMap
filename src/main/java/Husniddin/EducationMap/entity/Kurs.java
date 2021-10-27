@@ -29,8 +29,8 @@ public class Kurs {
     private Integer narxi;
     private Integer maxSoni;
     private Integer soni;
-    private Integer startWork;
-    private Integer endWork;
+    private String startWork;
+    private String endWork;
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonDeserialize(using = LocalDateDeserializer.class)
@@ -46,7 +46,7 @@ public class Kurs {
     public Kurs() {
     }
 
-    public Kurs(Long id, String nomi, Oqituvchi oqituvchi, FanTuri fan, HaftaTartibiTur haftaTartibiTur, OquvMarkaz oquvMarkaz, Integer narxi, Integer maxSoni, Integer soni, Integer startWork, Integer endWork, LocalDate boshlanishVaqti, Integer korilgan, Integer korilganIchi, String qisqaMalumot, FaolTur faolTur, Boolean status) {
+    public Kurs(Long id, String nomi, Oqituvchi oqituvchi, FanTuri fan, HaftaTartibiTur haftaTartibiTur, OquvMarkaz oquvMarkaz, Integer narxi, Integer maxSoni, Integer soni, String startWork, String endWork, LocalDate boshlanishVaqti, Integer korilgan, Integer korilganIchi, String qisqaMalumot, FaolTur faolTur, Boolean status) {
         this.id = id;
         this.nomi = nomi;
         this.oqituvchi = oqituvchi;
@@ -138,19 +138,19 @@ public class Kurs {
         this.soni = soni;
     }
 
-    public Integer getStartWork() {
+    public String getStartWork() {
         return startWork;
     }
 
-    public void setStartWork(Integer startWork) {
+    public void setStartWork(String startWork) {
         this.startWork = startWork;
     }
 
-    public Integer getEndWork() {
+    public String getEndWork() {
         return endWork;
     }
 
-    public void setEndWork(Integer endWork) {
+    public void setEndWork(String endWork) {
         this.endWork = endWork;
     }
 
