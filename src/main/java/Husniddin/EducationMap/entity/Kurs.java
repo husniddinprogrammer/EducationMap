@@ -31,6 +31,8 @@ public class Kurs {
     private Integer soni;
     private String startWork;
     private String endWork;
+    @ManyToOne
+    private Fayl photo;
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonDeserialize(using = LocalDateDeserializer.class)
@@ -46,7 +48,7 @@ public class Kurs {
     public Kurs() {
     }
 
-    public Kurs(Long id, String nomi, Oqituvchi oqituvchi, FanTuri fan, HaftaTartibiTur haftaTartibiTur, OquvMarkaz oquvMarkaz, Integer narxi, Integer maxSoni, Integer soni, String startWork, String endWork, LocalDate boshlanishVaqti, Integer korilgan, Integer korilganIchi, String qisqaMalumot, FaolTur faolTur, Boolean status) {
+    public Kurs(Long id, String nomi, Oqituvchi oqituvchi, FanTuri fan, HaftaTartibiTur haftaTartibiTur, OquvMarkaz oquvMarkaz, Integer narxi, Integer maxSoni, Integer soni, String startWork, String endWork, Fayl photo, LocalDate boshlanishVaqti, Integer korilgan, Integer korilganIchi, String qisqaMalumot, FaolTur faolTur, Boolean status) {
         this.id = id;
         this.nomi = nomi;
         this.oqituvchi = oqituvchi;
@@ -58,6 +60,7 @@ public class Kurs {
         this.soni = soni;
         this.startWork = startWork;
         this.endWork = endWork;
+        this.photo = photo;
         this.boshlanishVaqti = boshlanishVaqti;
         this.korilgan = korilgan;
         this.korilganIchi = korilganIchi;
@@ -152,6 +155,14 @@ public class Kurs {
 
     public void setEndWork(String endWork) {
         this.endWork = endWork;
+    }
+
+    public Fayl getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Fayl photo) {
+        this.photo = photo;
     }
 
     public LocalDate getBoshlanishVaqti() {
